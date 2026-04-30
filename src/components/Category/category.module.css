@@ -1,33 +1,41 @@
 .category {
-    height: 350px;
-    width: 350px;
-    background-color: white;
-    box-shadow: 0 0 10px rgb(0, 0, 0, 0.2);
+  height: 330px;
+  width: 330px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  margin: 10px;
 }
 .category img {
-    width: 100%;
-    object-fit: contain;
-    max-height: 250px;
-    padding: 0 10px;
+  width: 100%;
+  object-fit: contain;
+  max-height: 250px;
+  padding: 0 10px;
 }
-.category a{
-    text-decoration: none;
-    color: rgb(35, 35, 35);
+.category a {
+  text-decoration: none;
+  color: rgb(35, 35, 35);
 }
 .category h2,
 .category p {
-    padding: 5px;
-    margin-left: 15px;
+  padding: 5px;
+  margin-left: 15px;
 }
-.category p{
-    font-size: 12px;
-    font-weight: bold;
-    color: rgb(9, 132, 209);
+.category p {
+  font-size: 13px;
+  font-weight: bold;
+  color: rgb(9, 132, 209);
+  color: #007185;
 }
-.category_container{
-    position: relative;
-    margin-top: -10;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    place-items: center;
+.category p:hover {
+  color: #c7511f;
+}
+.category_container {
+  position: relative;
+  margin-top: -300px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  place-items: center;
+  max-width: 1600px;
+  gap: 40px;
+  margin-inline: auto;
 }

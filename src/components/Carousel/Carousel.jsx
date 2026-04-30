@@ -3,6 +3,8 @@ import { Carousel } from "react-responsive-carousel";
 import { img } from "./img/data";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import classes from "./Carousel.module.css"
+import { IoIosArrowBack } from "react-icons/io"; // Importing 'back' arrow icon from react-icons
+import { IoIosArrowForward } from "react-icons/io"; // Importing 'forward' arrow icon from react-icons
 
 function CarouselEffect() {
   return (
@@ -12,6 +14,7 @@ function CarouselEffect() {
         infiniteLoop={true}
         showIndicators={false}
         showThumbs={false}
+        showStatus={false}
       >
         {img.map((imageItemLink, i) => {
           return <img key={i} src={imageItemLink} />;
