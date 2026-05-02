@@ -19,7 +19,7 @@ function Results() {
       .catch((err) => {
         console.log("Error" + err);
       });
-  }, []);
+  }, [categoryName]);
 
   return (
     <LayOut>
