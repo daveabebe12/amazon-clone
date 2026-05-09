@@ -10,7 +10,7 @@ function CategoryCard({data}) {
             <span>
                 <h2>{data.title}</h2>
             </span>
-            <img src={data.imgLink} alt="" />
+            <img src={data.imgLink} alt={data.title} />
             <p>shop now</p>
         </Link>
     </div>
