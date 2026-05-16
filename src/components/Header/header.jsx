@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 function header() {
   return (
-    <section>
+    <section className={classes.fixed}>
       <section className={classes.header_container}>
         {/* left side links */}
         <div className={classes.logo_container}>
