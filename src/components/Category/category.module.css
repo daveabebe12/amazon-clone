@@ -1,6 +1,7 @@
 .category {
   height: 330px;
   width: 330px;
+  max-width: 100%;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   margin: 10px;
@@ -38,4 +39,11 @@
   max-width: 1600px;
   gap: 40px;
   margin-inline: auto;
+  padding-inline: 20px;
+}
+
+@media screen and (max-width: 1400px) {
+  .category_container {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
 }

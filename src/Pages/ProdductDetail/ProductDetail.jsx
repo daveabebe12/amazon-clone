@@ -1,16 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 // import classes from './ProductDetail.module.css'
 import LayOut from "../../components/LayOut/LayOut";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { productUrl } from "../../Api/endPoints";
-import ProductCard from "../../components/Product/ProductCard";
 import Loader from "../../components/Loader/loading";
+import { DataContext } from "../../components/DataProvider/DataProvider";
+import { Type } from "../../utility/action.type";
 
 function ProductDetail() {
   const { productId } = useParams();
   const [product, setproduct] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const [, dispatch] = useContext(DataContext);
+
+  const addToCart = () => {
+    dispatch({
+      type: Type.ADD_TO_BASKET,
+      item: product,
+    });
+  };
+
   useEffect(() => {
     axios
       .get(`${productUrl}/products/${productId}`)
@@ -63,6 +73,7 @@ function ProductDetail() {
           {product.rating?.count} reviews)
         </div>
         <button
+          onClick={addToCart}
           style={{
             padding: "10px 20px",
             backgroundColor: "#f0c14b",
