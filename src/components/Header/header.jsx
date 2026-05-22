@@ -6,6 +6,7 @@ import { BiCart } from "react-icons/bi";
 import LowerHeader from "./lowerHeader";
 import { Link } from "react-router-dom";
 import { DataContext } from "../DataProvider/DataProvider";
+import DisclaimerBanner from "../DisclaimerBanner/DisclaimerBanner";
 
 function Header() {
   const [{ basket }] = useContext(DataContext);
@@ -16,6 +17,7 @@ function Header() {
   return (
     <>
       <section className={classes.fixed}>
+        <DisclaimerBanner />
         <section className={classes.header_container}>
           {/* left side links */}
           <div className={classes.logo_container}>
