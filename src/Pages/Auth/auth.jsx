@@ -14,7 +14,7 @@ function Auth() {
 
   return (
     <section className={classes.login}>
-      <Link>
+      <Link to="/">
         <img
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Amazon_2024.svg/1280px-Amazon_2024.svg.png"
           alt="amazon-logo"
