@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amazon Sign-In</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Amazon Ember", Arial, sans-serif;
+      font-size: 14px;
+      background-color: #fff;
+      color: #0f1111;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* ── Header ── */
+    .header {
+      display: flex;
+      justify-content: center;
+      padding: 20px 0 14px;
+    }
+
+    .header .logo {
+      width: 103px;
+    }
+
+    /* ── Main Card ── */
+    .card {
+      width: 350px;
+      margin: 0 auto;
+      border: 1px solid #d5d9d9;
+      border-radius: 8px;
+      padding: 24px 24px 20px;
+    }
+
+    .card h1 {
+      font-size: 28px;
+      font-weight: 400;
+      margin-bottom: 18px;
+    }
+
+    /* ── Form Fields ── */
+    .form-group {
+      margin-bottom: 12px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .input-wrapper {
+      display: flex;
+      border: 1px solid #888c8c;
+      border-radius: 3px;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .input-wrapper:focus-within {
+      border-color: #e77600;
+      box-shadow: 0 0 0 3px rgba(228, 121, 17, 0.5);
+      outline: none;
+    }
+
+    .phone-prefix {
+      display: flex;
+      align-items: center;
+      padding: 0 8px;
+      background: #fff;
+      border-right: 1px solid #888c8c;
+      font-size: 13px;
+      white-space: nowrap;
+      color: #0f1111;
+      gap: 4px;
+    }
+
+    .phone-prefix select {
+      border: none;
+      outline: none;
+      background: transparent;
+      font-size: 13px;
+      cursor: pointer;
+      color: #0f1111;
+      appearance: none;
+      -webkit-appearance: none;
+      padding-right: 2px;
+    }
+
+    .phone-prefix::after {
+      content: "▾";
+      font-size: 11px;
+      color: #555;
+    }
+
+    .input-wrapper input[type="email"] {
+      flex: 1;
+      border: none;
+      outline: none;
+      padding: 7px 10px;
+      font-size: 14px;
+      color: #0f1111;
+      background: transparent;
+    }
+
+    /* ── Continue Button ── */
+    .btn-continue {
+      width: 100%;
+      padding: 9px 10px;
+      background: linear-gradient(to bottom, #f7dfa5, #f0c14b);
+      border: 1px solid #a88734;
+      border-radius: 3px;
+      font-size: 14px;
+      font-weight: 400;
+      color: #111;
+      cursor: pointer;
+      margin-top: 16px;
+      transition: background 0.1s;
+    }
+
+    .btn-continue:hover {
+      background: linear-gradient(to bottom, #f5d78e, #eeb933);
+    }
+
+    /* ── Terms ── */
+    .terms {
+      margin-top: 14px;
+      font-size: 12px;
+      color: #0f1111;
+      line-height: 1.5;
+    }
+
+    .terms a {
+      color: #0066c0;
+      text-decoration: none;
+    }
+
+    .terms a:hover {
+      color: #c45500;
+      text-decoration: underline;
+    }
+
+    /* ── Need Help ── */
+    .need-help {
+      margin-top: 12px;
+    }
+
+    .need-help a {
+      color: #0066c0;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .need-help a:hover {
+      color: #c45500;
+      text-decoration: underline;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      border: none;
+      border-top: 1px solid #e7e7e7;
+      margin: 16px 0 14px;
+    }
+
+    /* ── Business Section ── */
+    .business {
+      font-size: 14px;
+    }
+
+    .business p {
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .business a {
+      color: #0066c0;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .business a:hover {
+      color: #c45500;
+      text-decoration: underline;
+    }
+
+    /* ── Spacer ── */
+    .spacer {
+      flex: 1;
+    }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid #ddd;
+      padding: 18px 0 14px;
+      text-align: center;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 8px;
+    }
+
+    .footer-links a {
+      color: #0066c0;
+      text-decoration: none;
+      font-size: 12px;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+      color: #c45500;
+    }
+
+    .footer-copy {
+      font-size: 12px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header / Logo -->
+  <header class="header">
+    <a href="#">
+      <!-- Amazon SVG logo (black wordmark + orange smile arrow) -->
+      <svg class="logo" viewBox="0 0 103 31" xmlns="http://www.w3.org/2000/svg" aria-label="Amazon">
+        <text x="0" y="24" font-family="Arial Black, sans-serif" font-size="26" font-weight="900" fill="#000">amazon</text>
+        <!-- smile arrow approximation -->
+        <path d="M14 28 Q51 38 88 28" stroke="#FF9900" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <polygon points="86,25 91,29 86,31" fill="#FF9900"/>
+      </svg>
+    </a>
+  </header>
+
+  <!-- Sign-in Card -->
+  <main>
+    <div class="card">
+      <h1>Sign in or create account</h1>
+
+      <form action="#" method="post">
+        <div class="form-group">
+          <label for="email">Enter mobile number or email</label>
+          <div class="input-wrapper">
+            <div class="phone-prefix">
+              <select aria-label="Country code">
+                <option value="US">US +1</option>
+                <option value="GB">GB +44</option>
+                <option value="IN">IN +91</option>
+                <option value="AU">AU +61</option>
+                <option value="DE">DE +49</option>
+                <option value="FR">FR +33</option>
+                <option value="JP">JP +81</option>
+              </select>
+            </div>
+            <input type="email" id="email" name="email"
+                   placeholder="" autocomplete="email" />
+          </div>
+        </div>
+
+        <button type="submit" class="btn-continue">Continue</button>
+
+        <p class="terms">
+          By continuing, you agree to Amazon's
+          <a href="#">Conditions of Use</a> and
+          <a href="#">Privacy Notice</a>.
+        </p>
+      </form>
+
+      <div class="need-help">
+        <a href="#">Need help?</a>
+      </div>
+
+      <hr class="divider" />
+
+      <div class="business">
+        <p>Buying for work?</p>
+        <a href="#">Create a free business account</a>
+      </div>
+    </div>
+  </main>
+
+  <div class="spacer"></div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-links">
+      <a href="#">Conditions of Use</a>
+      <a href="#">Privacy Notice</a>
+      <a href="#">Help</a>
+    </div>
+    <p class="footer-copy">© 1996-2026, Amazon.com, Inc. or its affiliates</p>
+  </footer>
+
+</body>
+</html>
