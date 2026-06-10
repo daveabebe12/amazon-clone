@@ -3,6 +3,7 @@ import { Type } from "./action.type";
 
 export const initialState = {
   basket: [],
+  user: null
 };
 
 
@@ -29,7 +30,7 @@ export const reducer = (state, action) => {
         basket: updatedBasket,
       };
     }
-    case Type.REMOVE_FROM_BASKET: {
+    case Type.REMOVE_FROM_BASKET: 
       const index = state.basket.findIndex((item) => item.id === action.id);
       const newBasket = [...state.basket];
 
@@ -48,7 +49,13 @@ export const reducer = (state, action) => {
         ...state,
         basket: newBasket,
       };
-    }
+
+    case Type.SET_USER:
+      return{
+        ...state,
+        user:action.user
+      }
+    
 
     default:
       return state;
