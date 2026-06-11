@@ -7,9 +7,10 @@ import LowerHeader from "./lowerHeader";
 import { Link } from "react-router-dom";
 import { DataContext } from "../DataProvider/DataProvider";
 import DisclaimerBanner from "../DisclaimerBanner/DisclaimerBanner";
+import { auth } from "../../utility/firebase";
 
 function Header() {
-  const [{ basket }] = useContext(DataContext);
+  const [{ basket, user }] = useContext(DataContext);
   const totalItem = basket?.reduce((amount, item) => {
     return item.amount + amount;
   }, 0);
@@ -48,7 +49,7 @@ function Header() {
             {/* search */}
             <input type="text" placeholder="search product" />
             {/* search icon */}
-            <IoSearch />
+            <IoSearch size={38} />
           </div>
 
           {/* right side links */}
@@ -62,12 +63,23 @@ function Header() {
                 <option value="">EN</option>
               </section>
             </Link>
-            <Link to="/auth">
-              {/* sign in */}
+            <Link to={!user && "/auth"}>
               <div>
-                <p>Sign in</p>
-                <span>Account & Lists</span>
+                {user ? (
+                  <>
+                    <p>Hello {user?.email?.split("@")[0]}</p>
+                    <span onClick={()=>{auth.signOut}}>Sigh Out</span>
+                  </>
+                ) : (
+                  <>
+                    <p>Hello, signIn</p>
+                    <span>Account & Lists</span>
+                  </>
+                )}
+                {/* <p>Sign in</p> */}
               </div>
+
+              {/* sign in */}
             </Link>
             {/* return and orders */}
             <Link to="/order">
