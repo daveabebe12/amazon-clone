@@ -20,11 +20,9 @@ function Auth() {
     signUp: false,
   });
   const navigate = useNavigate()
-  // console.log(user);
 
   const authHandler = (e) => {
     e.preventDefault();
-    // console.log(e.target.name);
     if (e.target.name == "signin") {
       setLoading({ ...loading, signIn: true });
       signInWithEmailAndPassword(auth, email, password)
